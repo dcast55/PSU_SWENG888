@@ -23,7 +23,7 @@ public class UsersTable {
         return new String ( "CREATE TABLE " + TABLE_NAME + " (" +
                 COLUMN_NAME_FIRST_NAME + " TEXT," +
                 COLUMN_NAME_LAST_NAME + " TEXT," +
-                COLUMN_NAME_USERNAME  + " TEXT," +
+                COLUMN_NAME_USERNAME  + " TEXT PRIMARY KEY," +
                 COLUMN_NAME_BIRTHDAY + " TEXT," +
                 COLUMN_NAME_PHONE + " TEXT," +
                 COLUMN_NAME_EMAIL + " TEXT," +
