@@ -26,17 +26,17 @@ public class UsersTable {
                 COLUMN_NAME_USERNAME  + " TEXT," +
                 COLUMN_NAME_BIRTHDAY + " TEXT," +
                 COLUMN_NAME_PHONE + " TEXT," +
-                COLUMN_NAME_EMAIL + "TEXT," +
-                COLUMN_NAME_PASSWORD + "TEXT)");
+                COLUMN_NAME_EMAIL + " TEXT," +
+                COLUMN_NAME_PASSWORD + " TEXT)" );
     }
 
     public static String select(){
-        return new String("SELECT * FROM "+TABLE_NAME);
+        return new String("SELECT * FROM "+ TABLE_NAME);
 
     }
 
     public static final String delete(){
-        return "DROP TABLE IF EXISTS " +TABLE_NAME;
+        return "DROP TABLE IF EXISTS " + TABLE_NAME;
     }
 }
 

@@ -32,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
         mLoginBtn = (Button) findViewById(R.id.button_login);
         mSignUpBtn = (Button) findViewById(R.id.button_signup);
 
-        //final PersistenceUsers persistenceUsers = new PersistenceUsers(getApplicationContext());
-
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

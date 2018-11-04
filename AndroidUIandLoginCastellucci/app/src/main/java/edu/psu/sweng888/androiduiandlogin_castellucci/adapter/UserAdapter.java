@@ -41,7 +41,7 @@ public class UserAdapter extends ArrayAdapter {
         textViewUsername.setText(userProfile.getUsername());
 
         TextView textViewName = (TextView) listItemView.findViewById(R.id.text_view_name);
-        textViewName.setText(userProfile.getFirstName() + userProfile.getLastName());
+        textViewName.setText(userProfile.getFirstName() + " " + userProfile.getLastName());
 
         return listItemView;
     }

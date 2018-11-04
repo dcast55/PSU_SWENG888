@@ -24,11 +24,9 @@ public class ViewAllUsersActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list_view_users);
 
         PersistenceUsers persistenceUsers = new PersistenceUsers(this);
-        persistenceUsers.insert(new UserProfile(
-                "Dan", "Cas", "dcast55", "77", "77", "@gmail", "pass"));
         users = persistenceUsers.getDataFromDB();
 
-        userAdapter = new UserAdapter(getApplicationContext(), R.layout.custom_list_item, users);
+        userAdapter = new UserAdapter(this, R.layout.custom_list_item, users);
 
         listView.setAdapter(userAdapter);
     }

@@ -15,7 +15,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_success);
 
-        mViewUsersBtn = findViewById(R.id.view_all_users_btn);
+        mViewUsersBtn = (Button) findViewById(R.id.view_all_users_btn);
 
         mViewUsersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
