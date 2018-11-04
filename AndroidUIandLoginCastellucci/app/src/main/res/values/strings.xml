@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">AndroidUIandLogin-Castellucci</string>
+
+    <!-- Strings for the Login Activity -->
+    <string name="activity_login">Login / Sign Up</string>
+    <string name="edit_text_user">Email or ID</string>
+    <string name="edit_text_passwd">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="text_view_or">OR</string>
+    <string name="btn_create_user">Sign Up</string>
+
+    <!-- Strings for Login Succes -->
+    <string name="activity_login_success">Successful Login</string>
+    <string name="login_success_welcome">Welcome</string>
+    <string name="view_all_users_btn">View All Users</string>
+
+    <!-- View All Users -->
+    <string name="activity_view_all_users">View All Users</string>
+
+    <!-- Strings for SignUp -->
+    <string name="activity_signup">Create an Account</string>
+    <string name="edit_text_firstname">First Name</string>
+    <string name="edit_text_lastname">Last Name</string>
+    <string name="edit_text_username">Username</string>
+    <string name="edit_text_birthday">Birthday</string>
+    <string name="edit_text_phone">Mobile Phone</string>
+    <string name="edit_text_email">Email</string>
+    <string name="edit_text_pass_signup">Password</string>
+    <string name="btn_confirm_signup">Sign Up</string>
+    <string name="signup_success">User Successfully Created</string>
+</resources>
