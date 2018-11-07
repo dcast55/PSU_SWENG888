@@ -38,10 +38,16 @@ public class UserAdapter extends ArrayAdapter {
 
         // Get the username from the current UserProfile object and
         // set this text on the name TextView
-        textViewUsername.setText(userProfile.getUsername());
+        textViewUsername.setText("User: " + userProfile.getUsername());
 
         TextView textViewName = (TextView) listItemView.findViewById(R.id.text_view_name);
-        textViewName.setText(userProfile.getFirstName() + " " + userProfile.getLastName());
+        textViewName.setText("Full Name: " + userProfile.getFirstName() + " " + userProfile.getLastName());
+
+        TextView textViewEmail = (TextView) listItemView.findViewById(R.id.text_view_email);
+        textViewEmail.setText("Email: " + userProfile.getEmail());
+
+        TextView textViewPhone = (TextView) listItemView.findViewById(R.id.text_view_phone);
+        textViewPhone.setText("Phone: " + userProfile.getPhone());
 
         return listItemView;
     }

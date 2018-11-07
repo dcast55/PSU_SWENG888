@@ -8,6 +8,7 @@
     <string name="btn_login">Login</string>
     <string name="text_view_or">OR</string>
     <string name="btn_create_user">Sign Up</string>
+    <string name="error_login">Login Failed! Invalid Username or Password.</string>
 
     <!-- Strings for Login Succes -->
     <string name="activity_login_success">Successful Login</string>

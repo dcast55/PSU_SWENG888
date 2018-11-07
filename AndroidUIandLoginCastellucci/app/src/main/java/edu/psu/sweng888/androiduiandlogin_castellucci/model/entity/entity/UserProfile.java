@@ -1,6 +1,8 @@
 package edu.psu.sweng888.androiduiandlogin_castellucci.model.entity.entity;
 
-public class UserProfile {
+import java.io.Serializable;
+
+public class UserProfile implements Serializable {
 
     private String firstName;
     private String lastName;
