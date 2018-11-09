@@ -3,7 +3,7 @@
 
     <!-- Strings for the Login Activity -->
     <string name="activity_login">Login / Sign Up</string>
-    <string name="edit_text_user">Email or ID</string>
+    <string name="edit_text_user">Email</string>
     <string name="edit_text_passwd">Password</string>
     <string name="btn_login">Login</string>
     <string name="text_view_or">OR</string>

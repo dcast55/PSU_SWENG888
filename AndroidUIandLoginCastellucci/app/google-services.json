@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "572061221437",
+    "firebase_url": "https://androiduiandlogincastellucci.firebaseio.com",
+    "project_id": "androiduiandlogincastellucci",
+    "storage_bucket": "androiduiandlogincastellucci.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572061221437:android:8c934b1ee164a5f8",
+        "android_client_info": {
+          "package_name": "edu.psu.sweng888.androiduiandlogin_castellucci"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572061221437-pu0tph16ncercgv2f73q8rn5g013boll.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.psu.sweng888.androiduiandlogin_castellucci",
+            "certificate_hash": "e14bfb20273f15ac47948625cff0218ff16ef36a"
+          }
+        },
+        {
+          "client_id": "572061221437-51h94frjvg8s8t6rp9ukvbm139q5ho5o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqhU2XNOP50pS3Mz24kIRbF8G2jvyC-ao"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572061221437-51h94frjvg8s8t6rp9ukvbm139q5ho5o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

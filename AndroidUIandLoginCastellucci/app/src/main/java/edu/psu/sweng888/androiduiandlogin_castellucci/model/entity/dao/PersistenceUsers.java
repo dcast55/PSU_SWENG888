@@ -100,15 +100,15 @@ public class PersistenceUsers implements IPersistence {
         return users;
     }
 
-    public UserProfile getUserFromDb(String username, String password) {
+    public UserProfile getUserFromDb(String email) {
 
         UserProfile user = null;
 
         SQLiteDatabase sqLiteDatabase = databaseAccess.getWritableDatabase();
 
         String[] columns = {"*"};
-        String selection = "username=? and password = ?";
-        String[] selectionArgs = {username, password};
+        String selection = "email=?";
+        String[] selectionArgs = {email};
 
         Cursor cursor = sqLiteDatabase.query(UsersTable.TABLE_NAME, null, selection, selectionArgs, null, null, null);
 
@@ -120,7 +120,7 @@ public class PersistenceUsers implements IPersistence {
             String userName = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_NAME_USERNAME));
             String birthday = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_NAME_BIRTHDAY));
             String phone = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_NAME_PHONE));
-            String email = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_NAME_EMAIL));
+//            String emaildb = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_NAME_EMAIL));
             String pass = cursor.getString(cursor.getColumnIndex(UsersTable.COLUMN_NAME_PASSWORD));
 
             user = new UserProfile(firstName, lastName, userName, birthday, phone, email, pass);

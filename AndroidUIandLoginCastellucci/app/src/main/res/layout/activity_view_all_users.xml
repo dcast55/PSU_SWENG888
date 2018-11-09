@@ -6,9 +6,10 @@
     android:orientation="vertical"
     tools:context=".ViewAllUsersActivity">
 
-    <ListView
-        android:id="@+id/list_view_users"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_users"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
 
 </LinearLayout>

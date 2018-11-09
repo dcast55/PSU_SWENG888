@@ -1,54 +1,72 @@
 package edu.psu.sweng888.androiduiandlogin_castellucci.adapter;
 
-import android.content.Context;
-import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import edu.psu.sweng888.androiduiandlogin_castellucci.R;
 import edu.psu.sweng888.androiduiandlogin_castellucci.model.entity.entity.UserProfile;
 
-public class UserAdapter extends ArrayAdapter {
+public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder> {
 
-    public UserAdapter(Context context, int resource, List objects) {
-        super(context, resource, objects);
-    }
+    private String[] mDataset;
+    private ArrayList<UserProfile> mUsers;
 
-    @NonNull
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        View listItemView = convertView;
+        public LinearLayout mLayout;
+        TextView textViewUsername, textViewName, textViewEmail, textViewPhone;
 
-        if(listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.custom_list_item, parent, false);
+        public MyViewHolder(LinearLayout layout) {
+            super(layout);
+            mLayout = layout;
+            textViewUsername = (TextView) layout.findViewById(R.id.text_view_username);
+            textViewName = (TextView) layout.findViewById(R.id.text_view_name);
+            textViewEmail = (TextView) layout.findViewById(R.id.text_view_email);
+            textViewPhone = (TextView) layout.findViewById(R.id.text_view_phone);
         }
-
-        // Get the object located at this position in the list
-        UserProfile userProfile = (UserProfile) getItem(position);
-
-        // Find the TextView in the xml layout wit the ID
-        TextView textViewUsername = (TextView) listItemView.findViewById(R.id.text_view_username);
-
-        // Get the username from the current UserProfile object and
-        // set this text on the name TextView
-        textViewUsername.setText("User: " + userProfile.getUsername());
-
-        TextView textViewName = (TextView) listItemView.findViewById(R.id.text_view_name);
-        textViewName.setText("Full Name: " + userProfile.getFirstName() + " " + userProfile.getLastName());
-
-        TextView textViewEmail = (TextView) listItemView.findViewById(R.id.text_view_email);
-        textViewEmail.setText("Email: " + userProfile.getEmail());
-
-        TextView textViewPhone = (TextView) listItemView.findViewById(R.id.text_view_phone);
-        textViewPhone.setText("Phone: " + userProfile.getPhone());
-
-        return listItemView;
     }
+
+//    public UserAdapter(Context context, int resource, List objects) {
+//        super(context, resource, objects);
+//    }
+    public UserAdapter(String[] myDataSet) {
+        mDataset = myDataSet;
+    }
+
+    public UserAdapter(ArrayList<UserProfile> users) {
+        mUsers = users;
+    }
+
+    @Override
+    public UserAdapter.MyViewHolder onCreateViewHolder (ViewGroup parent, int viewType) {
+        // create a new view
+        LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.custom_list_item, parent, false);
+
+        MyViewHolder vh = new MyViewHolder(v);
+        return vh;
+    }
+
+    @Override
+    public void onBindViewHolder(MyViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        UserProfile userProfile = mUsers.get(position);
+
+        holder.textViewUsername.setText("User: " + userProfile.getUsername());
+        holder.textViewName.setText("Full Name: " + userProfile.getFirstName() + " " + userProfile.getLastName());
+        holder.textViewEmail.setText("Email: " + userProfile.getEmail());
+        holder.textViewPhone.setText("Phone: " + userProfile.getPhone());
+    }
+
+    @Override
+    public int getItemCount() {
+        return mUsers.size();
+    }
+
 }
