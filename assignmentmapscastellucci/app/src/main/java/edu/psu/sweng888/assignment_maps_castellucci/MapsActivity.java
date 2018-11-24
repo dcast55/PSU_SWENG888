@@ -1,9 +1,13 @@
 package edu.psu.sweng888.assignment_maps_castellucci;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -23,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import edu.psu.sweng888.assignment_maps_castellucci.broadcast.BroadcastReceiverMap;
 import edu.psu.sweng888.assignment_maps_castellucci.model.MapLocation;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -32,17 +37,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private LatLng currentLatLng;
     private Marker currentMapMarker;
+    private Button mLoadButton;
+
+    private IntentFilter intentFilter = null;
+    private BroadcastReceiverMap broadcastReceiverMap = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        mLoadButton = findViewById(R.id.btn_load_firebase);
+        mLoadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createMarkersFromFirebase();
+            }
+        });
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        intentFilter = new IntentFilter("edu.psu.sweng888.assignment_maps_castellucci.MAP_LOCATION_BROADCAST");
+        broadcastReceiverMap = new BroadcastReceiverMap();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Register the Broadcast Receiver.
+        registerReceiver(broadcastReceiverMap, intentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        // Unregister the Broadcast Receiver
+        unregisterReceiver(broadcastReceiverMap);
+        super.onStop();
+    }
 
     /**
      * Manipulates the map once available.
@@ -59,29 +93,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
 
-//        Intent intent = getIntent();
-//        Double latitude = intent.getDoubleExtra("LATITUDE", Double.NaN);
-//        Double longitude = intent.getDoubleExtra("LONGITUDE", Double.NaN);
-//        String location = intent.getStringExtra("LOCATION");
-//
-//        // Set initial positionning (Latitude / longitude)
-        currentLatLng = new LatLng(40, -75);
-//
-//        googleMap.addMarker(new MarkerOptions()
-//                .position(currentLatLng)
-//                .title(location)
-//        );
+        Intent intent = getIntent();
+        Double latitude = intent.getDoubleExtra("LATITUDE", Double.NaN);
+        Double longitude = intent.getDoubleExtra("LONGITUDE", Double.NaN);
+        String location = intent.getStringExtra("LOCATION");
 
-        // Set the camera focus on the current LatLtn object, and other map properties.
+        currentLatLng = new LatLng(latitude, longitude);
+
+        googleMap.addMarker(new MarkerOptions()
+                .position(currentLatLng)
+                .title(location)
+        );
+
         mapCameraConfiguration();
         useMapClickListener();
         useMarkerClickListener();
         useMapLongClickListener();
         useCameraMoveListener();
-        createMarkersFromFirebase();
     }
 
-    private void mapCameraConfiguration(){
+    private void mapCameraConfiguration() {
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(currentLatLng)
@@ -185,10 +216,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         ArrayList<MapLocation> mapLocations = loadData();
 
-        for (MapLocation location : mapLocations) {
-            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            createCustomMapMarkers(latLng, location.getTitle(), location.getDescription());
-        }
+        // List is always empty here because Firebase call is asynchronous
+//        for (MapLocation location : mapLocations) {
+//            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//            createCustomMapMarkers(latLng, location.getTitle(), location.getDescription());
+//        }
     }
 
     private ArrayList<MapLocation> loadData(){
@@ -215,6 +247,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                     // Update the global variable (currentMapMarker)
                     mMap.addMarker(markerOptions);
+
+                    triggerBroadcastMessageFromFirebase(location.getTitle(), location.getLatitude(), location.getLongitude());
                 }
             }
 
@@ -225,5 +259,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
         return mapLocations;
+    }
+
+    private void triggerBroadcastMessageFromFirebase(String location, Double lat, Double lng) {
+        Intent explicitIntent = new Intent(this, BroadcastReceiverMap.class);
+        Double latitude = Double.valueOf(lat);
+        Double longitude = Double.valueOf(lng);
+
+        explicitIntent.putExtra("LATITUDE", latitude);
+        explicitIntent.putExtra("LONGITUDE", longitude);
+        explicitIntent.putExtra("LOCATION", location);
+
+        sendBroadcast(explicitIntent);
     }
 }
