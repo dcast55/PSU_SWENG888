@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "116252245764",
+    "firebase_url": "https://assignment-maps-castellucci.firebaseio.com",
+    "project_id": "assignment-maps-castellucci",
+    "storage_bucket": "assignment-maps-castellucci.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116252245764:android:f7258eab19d415f4",
+        "android_client_info": {
+          "package_name": "edu.psu.sweng888.assignment_maps_castellucci"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "116252245764-6oqsdfi3upghceu6n1dkka47o9eij25a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.psu.sweng888.assignment_maps_castellucci",
+            "certificate_hash": "e14bfb20273f15ac47948625cff0218ff16ef36a"
+          }
+        },
+        {
+          "client_id": "116252245764-rr1ipv807j00p0e15stfv2tjb1755him.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWRe6UxZfOtwT4_SpUAANE-6ofAxMlHtQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "116252245764-rr1ipv807j00p0e15stfv2tjb1755him.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
